@@ -1,21 +1,20 @@
 /**
- * Created by CharlieShi on 3/9/17.
+ * Created by CharlieShi on 3/11/17.
  */
-import TextPrefab from './TextPrefab'
+import Prefab from './Prefab'
 
-export default class MenuItem extends TextPrefab {
+export default class HighlightedRegion extends Prefab {
     constructor (game, name, position, properties) {
         super(game, name, position, properties);
-
-        this.anchor.setTo(0);
+        console.log('in highlighted region')
+        this.alpha = 0.5;
         this.inputEnabled = true;
         this.events.onInputDown.add(this.select, this);
     }
 
     select () {
-        console.log('select')
+
     }
+
+
 }
-
-
-

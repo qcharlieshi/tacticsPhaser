@@ -4,6 +4,7 @@
 import Phaser from 'phaser'
 import Unit from '../prefabs/Unit'
 import MenuItem from '../prefabs/MenuItem'
+import CommandItem from '../prefabs/CommandItem'
 import Menu from '../prefabs/Menu'
 
 export default class TiledState extends Phaser.State {
@@ -12,7 +13,7 @@ export default class TiledState extends Phaser.State {
 
         this.prefab_classes = {
             "unit": Unit.prototype.constructor,
-            "command_item": MenuItem.prototype.constructor,
+            "command_item": CommandItem.prototype.constructor,
             "menu": Menu.prototype.constructor
         };
     }
@@ -82,7 +83,6 @@ export default class TiledState extends Phaser.State {
     create_prefab (prefab_name, prefab_data, position) {
         let prefab;
 
-        console.log('create prefab', prefab_data)
         if (this.prefab_classes.hasOwnProperty(prefab_data.type)) {
             prefab = new this.prefab_classes[prefab_data.type](this, prefab_name, position, prefab_data.properties);
         }

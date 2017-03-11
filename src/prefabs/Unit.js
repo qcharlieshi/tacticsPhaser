@@ -18,15 +18,17 @@ export default class Unit extends Prefab {
             health: 5
         };
 
-        this.healthbar = this.game_state.game.add.sprite(this.x, this.y - this.height, "healthbar_image");
-        this.healthbar.anchor.setTo(0.5);
-        this.healthbar.scale.setTo(this.stats.health, 1);
+        let style = {
+            font: "bold 10px Arial",
+            fill: "#FFF",
+            stroke: "#000",
+            strokeThickness: 3
+            //backgroundColor: "#000"
+        }
 
-        //Add Text instead of healthbar
-        // var style = { font: "32px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: sprite.width, align: "center", backgroundColor: "#ffff00" };
-        // text = game.add.text(0, 0, "- text on a sprite -\ndrag me", style);
-        // text.anchor.set(0.5);
-        //this.hello_sprite.addChild(this.label_score);  //Need to use addChild
+        //Set healthbar as text
+        this.healthbar = this.game_state.game.add.text(this.x - 5, this.y - 5, this.health, style);
+        this.healthbar.anchor.setTo(0.5);
     }
 }
 

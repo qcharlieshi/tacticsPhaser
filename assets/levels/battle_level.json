@@ -1,6 +1,7 @@
 {
     "assets": {
-        "battle_tileset": {"type": "image", "source": "assets/images/aw-mapsprites.jpg"},
+        "battle_tileset": {"type": "image", "source": "assets/images/open_tileset.png"},
+        "aw": {"type": "image", "source": "assets/images/aw-mapsprites.jpg"},
         "knight_image": {"type": "image", "source": "assets/images/knight.png"},
         "princess_image": {"type": "image", "source": "assets/images/princess.png"},
         "mage_image": {"type": "image", "source": "assets/images/mage.png"},
@@ -9,7 +10,7 @@
         "healthbar_image": {"type": "image", "source": "assets/images/healthbar.png"},
         "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},
         
-        "level_tilemap": {"type": "tilemap", "source": "assets/maps/tutorial.json"}
+        "level_tilemap": {"type": "tilemap", "source": "assets/maps/battle_mapv2.json"}
     },
     "groups": [
         "move_regions",
@@ -20,7 +21,7 @@
     ],
     "map": {
         "key": "level_tilemap",
-        "tilesets": ["battle_tileset"]
+        "tilesets": ["battle_tileset", "aw"]
     },
     "prefabs": {
         "menu": {

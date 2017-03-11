@@ -1,7 +1,4 @@
-import Phaser from 'phaser'
-
-export default class create_prefab_from_pool extends Phaser {
-  constructor (pool, prefab_constructor, game_state, prefab_name, prefab_position, prefab_properties) {
+const create_prefab_from_pool = (pool, prefab_constructor, game_state, prefab_name, prefab_position, prefab_properties) => {
       let prefab;
       // get the first dead prefab from the pool
       prefab = pool.getFirstDead();
@@ -12,6 +9,7 @@ export default class create_prefab_from_pool extends Phaser {
           // if there is a dead prefab, reset it in the new position
           prefab.reset(prefab_position.x, prefab_position.y);
       }
-  }
 
 }
+
+export default create_prefab_from_pool;

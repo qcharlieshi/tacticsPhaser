@@ -11,8 +11,6 @@ export default class Prefab extends Phaser.Sprite {
 
         this.name = name;
 
-        console.log('inside prefab maker', this)
-
         this.game_state.groups[properties.group].add(this);
         this.frame = +properties.frame;
         this.anchor.setTo(0.5);
