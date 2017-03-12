@@ -25,6 +25,7 @@
     "webpack": "^2.2.0"
   },
   "dependencies": {
+    "firebase": "^3.7.1",
     "phaser-ce": "^2.7.3",
     "webfontloader": "^1.6.27"
   }
