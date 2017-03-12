@@ -18,10 +18,10 @@ export default class PreparationState extends TiledState {
 
         //Each level could have its own set of starting units
         this.units_to_place =
-            [{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: "infantry_image", group: this.local_player + "_units", unit_class: "infantry"}},
-            {type: "unit", name: this.local_player + "_rocket_infantry_unit", properties: {texture: "rocket_infantry_image", group: this.local_player + "_units", unit_class: "rocket_infantry"}},
-            {type: "unit", name: this.local_player + "_tank_unit", properties: {texture: "tank_image", group: this.local_player + "_units", unit_class: "tank"}},
-            {type: "unit", name: this.local_player + "_apc_unit", properties: {texture: "apc_image", group: this.local_player + "_units", unit_class: "apc"}},
+            [//{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: "infantry_image", group: this.local_player + "_units", unit_class: "infantry"}},
+            //{type: "unit", name: this.local_player + "_rocket_infantry_unit", properties: {texture: "rocket_infantry_image", group: this.local_player + "_units", unit_class: "rocket_infantry"}},
+            //{type: "unit", name: this.local_player + "_tank_unit", properties: {texture: "tank_image", group: this.local_player + "_units", unit_class: "tank"}},
+            //{type: "unit", name: this.local_player + "_apc_unit", properties: {texture: "apc_image", group: this.local_player + "_units", unit_class: "apc"}},
             {type: "unit", name: this.local_player + "_rocket_unit", properties: {texture: "rocket_image", group: this.local_player + "_units", unit_class: "rocket"}}];
 
         this.units = [];
@@ -49,7 +49,7 @@ export default class PreparationState extends TiledState {
             {type: "unit_sprite", properties: {texture: this.current_unit_to_place.properties.texture, group: "unit_sprites"}},
             position);
 
-        //Test if theres any more units to place, if not start
+        //Test if theres any more units to place, if not set to prepared and wait
         if (this.units_to_place.length > 0) {
             this.current_unit_to_place = this.units_to_place.shift();
             this.prefabs.current_unit_sprite.loadTexture(this.current_unit_to_place.properties.texture);
@@ -74,6 +74,8 @@ export default class PreparationState extends TiledState {
 
         if (prepared) {
             console.log('start battle')
+            this.game.state.start("BootState", true, false, "assets/levels/battle_level.json", "BattleState",
+                {battle_id: this.battle_ref.key, local_player: this.local_player, remote_player: this.remote_player});
         }
     }
 }

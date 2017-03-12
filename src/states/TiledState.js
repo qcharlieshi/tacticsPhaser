@@ -95,6 +95,8 @@ export default class TiledState extends Phaser.State {
         }
 
         this.prefabs[prefab_name] = prefab;
+
+
         return prefab;
     }
 
@@ -103,13 +105,12 @@ export default class TiledState extends Phaser.State {
 
         this.groups[group].forEach(function (prefab) {
             //If prefab has the position we're looking for, return it
-            console.log('prefab locations', prefab.x, " ", position.x)
             if (prefab.x === position.x && prefab.y === position.y) {
 
                 found_prefab = prefab;
             }
         }, this);
-        console.log("inside prefab finder", found_prefab)
+
         return found_prefab
     }
 }

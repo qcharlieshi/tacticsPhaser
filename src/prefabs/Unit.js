@@ -12,6 +12,9 @@ export default class Unit extends Prefab {
     }
 
     load_stats (classes_data) {
+        console.log("inside unit", classes_data);
+        console.log("inside unit", this.unit_class);
+
         this.stats = Object.create(classes_data[this.unit_class]);
 
         //Set healthbar as text

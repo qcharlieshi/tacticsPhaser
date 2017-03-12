@@ -11,6 +11,7 @@ import PriorityQueue from '../PriorityQueue'
 
 //import HighlightedRegion from '../prefabs/HighlightedRegion'
 import createPrefabFromPool from '../utils'
+import firebase from 'firebase'
 
 export default class BattleState extends TiledState {
     constructor (game) {
@@ -23,13 +24,23 @@ export default class BattleState extends TiledState {
 
     init (level_data, extra_parameters) {
         TiledState.prototype.init.call(this, level_data);
-        this.units = extra_parameters.units;
+
+
+        this.battle_ref = firebase.database().ref("child/battles").child(extra_parameters.battle_id);
+        this.local_player = extra_parameters.local_player;
+        this.remote_player = extra_parameters.remote_player;
+
+
+
+        //this.units = extra_parameters.units;
     }
 
     create () {
+        //Use tiled state create to create map using level data
         super.create.call(this);
         let world_grid;
 
+        //Add menu items to the menu
         this.groups.menu_items.forEach(function (menu_item) {
             this.prefabs.menu.add_item(menu_item);
         }, this);
@@ -48,41 +59,85 @@ export default class BattleState extends TiledState {
         //Use classes data to generate units
         this.class_data = JSON.parse(this.game.cache.getText("class_data"));
 
-        //Create priority que for units to determine turn order
-        //todo: switch to player order
-        this.units_queue = new PriorityQueue({comparator: function (unit_a, unit_b) {
-            return unit_a.act_turn - unit_b.act_turn;
-        }});
+        //Bind callback to firebase
+        this.battle_ref.once("value", this.create_units_queue.bind(this));
 
-        //Add each unit to the queue
-        this.units.forEach(function (unit_data) {
-            let unit_prefab = this.create_prefab(unit_data.name, unit_data, unit_data.position);
-            unit_prefab.load_stats(this.class_data);
-            this.units_queue.queue(unit_prefab);
-        }, this)
+        //Set current player
+        this.current_player = "player1";
+        this.current_turn = 1;
 
-        this.next_turn();
+
+        this.battle_ref.onDisconnect().remove();
+
+        this.game.stage.disableVisibilityChange = true;
+
+        //this.game_over();
+    }
+
+    next_player_turn () {
+        //Check if units are alive or game over
+        //If not game over, set current_player to the opposite
+        if (this.groups.player1_units.countLiving() === 0 || this.groups.player2_units.countLiving() === 0) {
+            this.game_over();
+        } else {
+            this.clear_previous_turn();
+            this.current_turn++;
+
+            if (this.current_player === 'player1') {
+                this.current_player = 'player2';
+
+                //add units back to its queue
+                //untint player2's units
+                this.groups.player2_units.forEach(function (unit) {
+                    unit.tint = 0xffffff;
+                });
+
+                this.battle_ref.once("value", this.create_units_queue.bind(this));
+                //this.create_units_queue();
+            } else {
+                this.current_player = 'player1';
+
+                this.groups.player1_units.forEach(function (unit) {
+                    unit.tint = 0xffffff;
+                });
+
+                this.create_units_queue();
+            }
+        }
     }
 
     next_turn () {
         this.clear_previous_turn();
-        //Set current unit to the one dequeed
-        this.current_unit = this.units_queue.dequeue();
+        //Set current unit to the one dequeed based on the current player passed
+        //If player has no more units to deque, change to next player's turn
+        console.log('length of p1', this.units_queue_p1.length);
+
+        if (this.current_player === "player1") {
+            if (this.units_queue_p1.length > 0)
+                this.current_unit = this.units_queue_p1.dequeue();
+            else
+                this.next_player_turn();
+        } else {
+            if (this.units_queue_p2.length > 0)
+                this.current_unit = this.units_queue_p2.dequeue();
+            else
+                this.next_player_turn();
+        }
 
         //Only show if its alive, otherwise skip
         if (this.current_unit.alive) {
-            this.current_unit.tint = 0x0000ff;
-            this.units_queue.queue(this.current_unit);
-            this.prefabs.menu.show(true);
+            this.current_unit.prefab.tint = (this.current_unit.prefab.name.search("player1") !== -1) ? 0x0000ff : 0xff0000;
+
+            if (this.current_unit.player === this.local_player) {
+                this.prefabs.menu.show(true);
+            }
         } else {
             this.next_turn();
         }
     }
 
     clear_previous_turn () {
-        if (this.current_unit) {
-            this.current_unit.tint = 0xffffff;
-        }
+        //Clears any highlighted regions
 
         this.groups.move_regions.forEach(function (region) {
             region.kill();
@@ -91,9 +146,7 @@ export default class BattleState extends TiledState {
         this.groups.attack_regions.forEach(function (region) {
             region.kill();
         }, this);
-
-
-    }
+    };
 
     create_world_grid () {
         let obstacles_layer, row_index, column_index, world_grid;
@@ -111,6 +164,52 @@ export default class BattleState extends TiledState {
         return world_grid;
     }
 
+    create_units_queue (snapshot) {
+        let battle_data;
+        battle_data = snapshot.val();
+
+        //Create new queue if not avaliable
+        if (!this.units_queue_p1)
+            this.units_queue_p1 = new PriorityQueue();
+        if (!this.units_queue_p2)
+            this.units_queue_p2 = new PriorityQueue();
+
+        if (this.current_player === 'player1' || this.current_turn === 1)
+            this.queue_player_units(battle_data, "player1");
+        if (this.current_player === 'player2' || this.current_turn === 1)
+            this.queue_player_units(battle_data, "player2");
+
+        this.battle_ref.child("command").on("value", this.receive_command.bind(this));
+
+        this.next_turn();
+    }
+
+    queue_player_units (battle_data, player) {
+        let unit_key, unit_data, unit_prefab;
+
+        //console.log('create units q', battle_data[player].units);
+
+        for (unit_key in battle_data[player].units) {
+            //console.log("unit key", unit_key)
+
+            if (battle_data[player].units.hasOwnProperty(unit_key)) {
+                unit_data = battle_data[player].units[unit_key];
+
+                unit_prefab = this.create_prefab(unit_data.name, unit_data, unit_data.position);
+                unit_prefab.load_stats(this.class_data);
+
+                //Add units to each player's queue
+                if (player === "player1") {
+                    this.units_queue_p1.queue({player: player, prefab: unit_prefab});
+                }
+
+                if (player === "player2") {
+                    this.units_queue_p2.queue({player: player, prefab: unit_prefab});
+                }
+            }
+        }
+    }
+
     highlight_region (source, radius, region_pool, region_constructor) {
         let positions, region_name, highlighted_regions;
 
@@ -126,6 +225,24 @@ export default class BattleState extends TiledState {
         }, this)
     }
 
+    //Unit Actions
+    receive_command (snapshot) {
+        let command;
+        command = snapshot.val();
+
+        if (command) {
+            switch (command.type) {
+                case "move":
+                    this.move_unit(command.target);
+                    break;
+                case "attack":
+                    break;
+                case "wait":
+                    break;
+            }
+        }
+    }
+
     move () {
         this.highlight_region(this.current_unit.position,
                               this.current_unit.stats.walking_radius,
@@ -133,8 +250,16 @@ export default class BattleState extends TiledState {
                               MoveRegion.prototype.constructor)
     }
 
-    attack () {
+    send_move_command (target_position) {
+        this.battle_ref.child("command").set({type: "move", target: {x: target_position.x, y: target_position.y}});
+    }
 
+    move_unit (target) {
+        this.current_unit.prefab.move_to(target);
+        this.next_turn();
+    }
+
+    attack () {
         this.highlight_region(this.current_unit.position,
                               this.current_unit.stats.attack_range,
                               "attack_regions",
@@ -144,6 +269,18 @@ export default class BattleState extends TiledState {
     wait () {
         this.next_turn();
     }
+
+    // game_over () {
+    //     let winner, winner_message;
+    //     winner = (this.groups.player1_units.countLiving() === 0) ? "player 2" : "player 1";
+    //
+    //     winner_message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, winner + " wins", {font: "24px Arial", fill: "#FFF"});
+    //     winner_message.anchor.setTo(0.5);
+    //
+    //     this.game.input.onDown.add(function () {
+    //         this.game.state.start("BootState", true, false, "assets/levels/title_screen.json", "TitleState");
+    //     }, this);
+    // }
 }
 
 

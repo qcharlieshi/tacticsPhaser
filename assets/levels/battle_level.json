@@ -16,7 +16,8 @@
     "groups": [
         "move_regions",
         "attack_regions",
-        "units",
+        "player1_units",
+        "player2_units",
         "menu",
         "menu_items"
     ],

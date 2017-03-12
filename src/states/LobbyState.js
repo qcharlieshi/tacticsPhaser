@@ -43,7 +43,6 @@ export default class LobbyState extends JSONLevelState {
     host_battle (snapshot) {
         let battle_data;
         battle_data = snapshot.val();
-        console.log(snapshot)
 
         if (battle_data.full) {
             console.log("player1 starting preparation");
