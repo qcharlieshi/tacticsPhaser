@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e824a4d9-0610-45e7-90bf-db99db85d12b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/plugins/Pathfinding.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/prefabs/CommandItem.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/prefabs/HighlightedRegion.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/prefabs/MoveRegion.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PriorityQueue.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/easystar-0.2.3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/prefabs/AttackRegion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/highlighted_region.png" afterPath="$PROJECT_DIR$/assets/images/highlighted_region.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/rectangle.png" afterPath="$PROJECT_DIR$/assets/images/rectangle.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/levels/battle_level.json" afterPath="$PROJECT_DIR$/assets/levels/battle_level.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/prefabs/MenuItem.js" afterPath="$PROJECT_DIR$/src/prefabs/MenuItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/prefabs/Prefab.js" afterPath="$PROJECT_DIR$/src/prefabs/Prefab.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/battle_mapv2.json" afterPath="$PROJECT_DIR$/assets/maps/battle_mapv2.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js" afterPath="$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/prefabs/CommandItem.js" afterPath="$PROJECT_DIR$/src/prefabs/CommandItem.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/prefabs/HighlightedRegion.js" afterPath="$PROJECT_DIR$/src/prefabs/HighlightedRegion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/prefabs/MoveRegion.js" afterPath="$PROJECT_DIR$/src/prefabs/MoveRegion.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/prefabs/Unit.js" afterPath="$PROJECT_DIR$/src/prefabs/Unit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/BattleState.js" afterPath="$PROJECT_DIR$/src/states/BattleState.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/TiledState.js" afterPath="$PROJECT_DIR$/src/states/TiledState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils.js" afterPath="$PROJECT_DIR$/src/utils.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,39 +41,11 @@
       <file leaf-file-name="TiledState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/TiledState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-564">
-              <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="battle_level.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/levels/battle_level.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HighlightedRegion.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/prefabs/HighlightedRegion.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommandItem.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/prefabs/CommandItem.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="1615">
+              <caret line="97" column="70" lean-forward="false" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
+              <folding>
+                <element signature="e#44#71#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -78,12 +53,21 @@
       <file leaf-file-name="Unit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/prefabs/Unit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#44#71#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="battle_level.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/levels/battle_level.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="84" lean-forward="false" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,8 +75,8 @@
       <file leaf-file-name="Pathfinding.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plugins/Pathfinding.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+            <state relative-caret-position="337">
+              <caret line="41" column="51" lean-forward="false" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -111,8 +95,8 @@
       <file leaf-file-name="BreadthFirstSearch.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="28" column="74" lean-forward="false" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
+            <state relative-caret-position="-17">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,8 +105,8 @@
       <file leaf-file-name="BattleState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/BattleState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+            <state relative-caret-position="293">
+              <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
               <folding>
                 <element signature="e#44#71#0" expanded="true" />
               </folding>
@@ -130,11 +114,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoveRegion.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommandItem.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/prefabs/CommandItem.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttackRegion.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/prefabs/AttackRegion.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoveRegion.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/prefabs/MoveRegion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -160,6 +164,8 @@
       <find>parent</find>
       <find>groups</find>
       <find>pref</find>
+      <find>BreadthFirstSearch</find>
+      <find>find_pat</find>
       <find>width</find>
     </findStrings>
   </component>
@@ -179,19 +185,23 @@
         <option value="$PROJECT_DIR$/assets/maps/tutorial.json" />
         <option value="$PROJECT_DIR$/src/prefabs/Menu.js" />
         <option value="$PROJECT_DIR$/src/prefabs/Prefab.js" />
-        <option value="$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js" />
-        <option value="$PROJECT_DIR$/assets/levels/battle_level.json" />
         <option value="$PROJECT_DIR$/src/prefabs/TextPrefab.js" />
-        <option value="$PROJECT_DIR$/assets/maps/battle_mapv2.json" />
-        <option value="$PROJECT_DIR$/src/states/TiledState.js" />
         <option value="$PROJECT_DIR$/src/utils.js" />
-        <option value="$PROJECT_DIR$/src/prefabs/HighlightedRegion.js" />
         <option value="$PROJECT_DIR$/src/prefabs/MenuItem.js" />
-        <option value="$PROJECT_DIR$/src/prefabs/CommandItem.js" />
-        <option value="$PROJECT_DIR$/src/prefabs/Unit.js" />
         <option value="$PROJECT_DIR$/src/plugins/Pathfinding.js" />
-        <option value="$PROJECT_DIR$/src/states/BattleState.js" />
+        <option value="$PROJECT_DIR$/src/prefabs/HighlightedRegion.js" />
+        <option value="$PROJECT_DIR$/src/easystar-0.2.3.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js" />
+        <option value="$PROJECT_DIR$/src/states/TiledState.js" />
+        <option value="$PROJECT_DIR$/assets/maps/battle_mapv2.json" />
+        <option value="$PROJECT_DIR$/src/PriorityQueue.js" />
+        <option value="$PROJECT_DIR$/src/prefabs/AttackRegion.js" />
         <option value="$PROJECT_DIR$/src/prefabs/MoveRegion.js" />
+        <option value="$PROJECT_DIR$/src/prefabs/Unit.js" />
+        <option value="$PROJECT_DIR$/src/states/BattleState.js" />
+        <option value="$PROJECT_DIR$/src/prefabs/CommandItem.js" />
+        <option value="$PROJECT_DIR$/assets/levels/battle_level.json" />
       </list>
     </option>
   </component>
@@ -475,12 +485,12 @@
       <option name="presentableId" value="Default" />
       <updated>1489018798455</updated>
       <workItem from="1489018799789" duration="27945000" />
-      <workItem from="1489186381410" duration="17867000" />
+      <workItem from="1489186381410" duration="25454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45812000" />
+    <option name="totallyTimeSpent" value="53399000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-462" y="-1035" width="1781" height="1035" extended-state="0" />
@@ -520,7 +530,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="48" column="73" lean-forward="true" selection-start-line="48" selection-start-column="73" selection-end-line="48" selection-end-column="73" />
-          <folding />
+          <folding>
+            <element signature="e#44#71#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -554,7 +566,6 @@
           <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#44#71#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -586,13 +597,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/npm-debug.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -716,14 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/maps/battle_mapv2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/prefabs/Prefab.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -740,14 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/levels/battle_level.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/maps/battle_map.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
@@ -756,34 +744,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/TiledState.js">
+    <entry file="file://$PROJECT_DIR$/assets/images/highlighted_region.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-564">
-          <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        <state relative-caret-position="306">
+          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js">
+    <entry file="file://$PROJECT_DIR$/src/easystar-0.2.3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="28" column="74" lean-forward="false" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
-          <folding />
+        <state relative-caret-position="510">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/prefabs/HighlightedRegion.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/prefabs/CommandItem.js">
+    <entry file="file://$PROJECT_DIR$/assets/maps/battle_mapv2.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="53" column="31" lean-forward="true" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PriorityQueue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/BreadthFirstSearch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -796,39 +809,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/prefabs/Unit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#44#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/Pathfinding.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+        <state relative-caret-position="337">
+          <caret line="41" column="51" lean-forward="false" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/BattleState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-          <folding>
-            <element signature="e#44#71#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/prefabs/MoveRegion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/prefabs/Unit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/BattleState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+          <folding>
+            <element signature="e#44#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/prefabs/CommandItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/TiledState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="97" column="70" lean-forward="false" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
+          <folding>
+            <element signature="e#44#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/prefabs/AttackRegion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/levels/battle_level.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="84" lean-forward="false" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
           <folding />
         </state>
       </provider>

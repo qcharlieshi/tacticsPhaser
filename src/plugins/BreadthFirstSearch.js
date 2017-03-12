@@ -62,6 +62,7 @@ export default class BreadthFirstSearch extends Phaser.Plugin {
             next_position = positions_to_check.shift();
             reachable_positions.push(next_position);
             distance_to_source = (Math.abs(next_position.x - source_position.x) / this.tile_dimensions.x) + (Math.abs(next_position.y - source_position.y) / this.tile_dimensions.y);
+
             if (distance_to_source < radius) {
                 this.add_neighbors(next_position, positions_to_check, reachable_positions);
             }

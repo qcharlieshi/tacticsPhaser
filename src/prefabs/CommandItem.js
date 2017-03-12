@@ -8,6 +8,8 @@ export default class CommandItem extends MenuItem {
         super (game, name, position, properties);
 
         this.callback = properties.callback;
+
+
     }
 
     select () {

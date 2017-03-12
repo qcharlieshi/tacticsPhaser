@@ -1,13 +1,21 @@
 {
     "assets": {
+        //Tilemaps
         "battle_tileset": {"type": "image", "source": "assets/images/open_tileset.png"},
         "aw": {"type": "image", "source": "assets/images/aw-mapsprites.jpg"},
+
+        //Units Old
         "knight_image": {"type": "image", "source": "assets/images/knight.png"},
         "princess_image": {"type": "image", "source": "assets/images/princess.png"},
         "mage_image": {"type": "image", "source": "assets/images/mage.png"},
         "archer_image": {"type": "image", "source": "assets/images/archer.png"},
+
+        //Units New
+        "infantry_image": {"type": "image", "source": "assets/images/infantry.png"},
+        "infantry_image": {"type": "image", "source": "assets/images/infantry.png"},
+
+
         "rectangle_image": {"type": "image", "source": "assets/images/rectangle.png"},
-        "healthbar_image": {"type": "image", "source": "assets/images/healthbar.png"},
         "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},
         
         "level_tilemap": {"type": "tilemap", "source": "assets/maps/battle_mapv2.json"}
@@ -34,30 +42,30 @@
         },
         "move_action": {
             "type": "command_item",
-            "position": {"x": 30, "y": 30},
+            "position": {"x": 30, "y": 25},
             "properties": {
                 "text": "Move",
-                "style": {"font": "12px Arial", "fill": "#FFF"},
+                "style": {"font": "10px Arial", "fill": "#000"},
                 "group": "menu_items",
                 "callback": "move"
             }
         },
         "attack_action": {
             "type": "command_item",
-            "position": {"x": 30, "y": 50},
+            "position": {"x": 30, "y": 40},
             "properties": {
                 "text": "Attack",
-                "style": {"font": "12px Arial", "fill": "#FFF"},
+                "style": {"font": "10px Arial", "fill": "#000"},
                 "group": "menu_items",
                 "callback": "attack"
             }
         },
         "wait_action": {
             "type": "command_item",
-            "position": {"x": 30, "y": 70},
+            "position": {"x": 30, "y": 55},
             "properties": {
                 "text": "Wait",
-                "style": {"font": "12px Arial", "fill": "#FFF"},
+                "style": {"font": "10px Arial", "fill": "#000"},
                 "group": "menu_items",
                 "callback": "wait"
             }
