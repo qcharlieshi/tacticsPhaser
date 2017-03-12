@@ -12,7 +12,7 @@ export default class PreparationState extends TiledState {
     init (level_data, extra_parameters) {
         super.init.call(this, level_data);
 
-        this.battle_ref = firebase.database.ref("child/battles").child(extra_parameters.battle_id);
+        this.battle_ref = firebase.database().ref("child/battles").child(extra_parameters.battle_id);
         this.local_player = extra_parameters.local_player;
         this.remote_player = extra_parameters.remote_player;
 
@@ -31,15 +31,25 @@ export default class PreparationState extends TiledState {
         TiledState.prototype.create.call(this);
         this.current_unit_to_place = this.units_to_place.shift();
         this.prefabs.current_unit_sprite.loadTexture(this.current_unit_to_place.properties.texture);
+
+        this.battle_ref.onDisconnect().remove;
+        this.game.stage.disableVisibilityChange = true;
     }
 
     place_unit (position) {
         this.current_unit_to_place.position = position;
         //this.units.push(this.current_unit_to_place);
+
+        //Push units onto firebase
         this.battle_ref.child(this.local_player).child("units").push(this.current_unit_to_place);
 
-        this.create_prefab(this.current_unit_to_place.name, {type: "unit_sprite", properties: {texture: this.current_unit_to_place.properties.texture, group: "unit_sprites"}}, position);
+        //????
+        this.create_prefab(
+            this.current_unit_to_place.name,
+            {type: "unit_sprite", properties: {texture: this.current_unit_to_place.properties.texture, group: "unit_sprites"}},
+            position);
 
+        //Test if theres any more units to place, if not start
         if (this.units_to_place.length > 0) {
             this.current_unit_to_place = this.units_to_place.shift();
             this.prefabs.current_unit_sprite.loadTexture(this.current_unit_to_place.properties.texture);
@@ -49,8 +59,21 @@ export default class PreparationState extends TiledState {
             this.groups.place_regions.forEach(function (region) {
                 region.kill();
             }, this);
-            this.battle_ref.child(this.local_player)
+
+            this.battle_ref.child(this.local_player).child("prepared").set(true, this.wait_for_enemy.bind(this));
             //this.game.state.start("BootState", true, false, "assets/levels/battle_level.json", "BattleState", {units: this.units});
+        }
+    }
+
+    wait_for_enemy () {
+        this.battle_ref.child(this.remote_player).child("prepared").on("value", this.start_battle.bind(this));
+    }
+
+    start_battle (snapshot) {
+        let prepared = snapshot.val();
+
+        if (prepared) {
+            console.log('start battle')
         }
     }
 }

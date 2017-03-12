@@ -83,15 +83,17 @@
                  "gid":88,
                  "height":16,
                  "id":15,
-                 "name":"region0",
+                 "name":"player1_region0",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -105,15 +107,17 @@
                  "gid":88,
                  "height":16,
                  "id":22,
-                 "name":"region1",
+                 "name":"player1_region1",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -127,15 +131,17 @@
                  "gid":88,
                  "height":16,
                  "id":23,
-                 "name":"region2",
+                 "name":"player1_region2",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -149,15 +155,17 @@
                  "gid":88,
                  "height":16,
                  "id":24,
-                 "name":"region3",
+                 "name":"player1_region3",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -171,15 +179,17 @@
                  "gid":88,
                  "height":16,
                  "id":25,
-                 "name":"region4",
+                 "name":"player1_region4",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -193,15 +203,17 @@
                  "gid":88,
                  "height":16,
                  "id":26,
-                 "name":"region5",
+                 "name":"player1_region5",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -215,15 +227,17 @@
                  "gid":88,
                  "height":16,
                  "id":27,
-                 "name":"region6",
+                 "name":"player1_region6",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -237,15 +251,17 @@
                  "gid":88,
                  "height":16,
                  "id":28,
-                 "name":"region7",
+                 "name":"player1_region7",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -259,15 +275,17 @@
                  "gid":88,
                  "height":16,
                  "id":29,
-                 "name":"region8",
+                 "name":"player1_region8",
                  "properties":
                     {
                      "group":"place_regions",
+                     "player":"player1",
                      "texture":"highlighted_region_image"
                     },
                  "propertytypes":
                     {
                      "group":"string",
+                     "player":"string",
                      "texture":"string"
                     },
                  "rotation":0,
@@ -276,6 +294,222 @@
                  "width":16,
                  "x":128,
                  "y":240
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":30,
+                 "name":"player2_region0",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":16
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":31,
+                 "name":"player2_region8",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":48
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":32,
+                 "name":"player2_region2",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":16
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":33,
+                 "name":"player2_region7",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":48
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":34,
+                 "name":"player2_region6",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":48
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":35,
+                 "name":"player2_region3",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":160,
+                 "y":32
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":36,
+                 "name":"player2_region4",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":32
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":37,
+                 "name":"player2_region5",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":32
+                }, 
+                {
+                 "gid":88,
+                 "height":16,
+                 "id":38,
+                 "name":"player2_region1",
+                 "properties":
+                    {
+                     "group":"place_regions",
+                     "player":"player2",
+                     "texture":"highlighted_region_image"
+                    },
+                 "propertytypes":
+                    {
+                     "group":"string",
+                     "player":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"place_region",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":16
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -284,7 +518,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":30,
+ "nextobjectid":39,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":16,

@@ -33,6 +33,7 @@ export default class LobbyState extends JSONLevelState {
                 break;
             }
         }
+
         if (!chosen_battle) {
             this.new_battle = firebase.database().ref("child/battles").push({player1: this.INITIAL_PLAYER_DATA, player2: this.INITIAL_PLAYER_DATA, full: false});
             this.new_battle.on("value", this.host_battle.bind(this));
@@ -42,14 +43,26 @@ export default class LobbyState extends JSONLevelState {
     host_battle (snapshot) {
         let battle_data;
         battle_data = snapshot.val();
+        console.log(snapshot)
 
         if (battle_data.full) {
-            this.new_battle.off();
             console.log("player1 starting preparation");
+
+            this.new_battle.off();
+
+            this.game.state.start("BootState", true, false,
+                "assets/levels/preparation_level.json",
+                "PreparationState",
+                {battle_id: snapshot.key, local_player: "player1", remote_player: "player2"});
         }
     }
 
     join_battle (battle_id) {
         console.log("player2 starting preparation");
+
+        this.game.state.start("BootState", true, false,
+            "assets/levels/preparation_level.json",
+            "PreparationState",
+            {battle_id: battle_id, local_player: "player2", remote_player: "player1"});
     }
 }

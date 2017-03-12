@@ -3,13 +3,15 @@
  */
 import JSONLevelState from './JSONLevelState';
 import TextPrefab from '../prefabs/TextPrefab';
+import Prefab from '../prefabs/Prefab'
 
 export default class TitleState extends JSONLevelState {
     constructor () {
         super();
 
         this.prefab_classes = {
-            "text": TextPrefab.prototype.constructor
+            "text": TextPrefab.prototype.constructor,
+            "image": Prefab.prototype.constructor
         };
     }
 
