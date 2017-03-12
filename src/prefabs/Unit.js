@@ -6,27 +6,22 @@ import Prefab from './Prefab'
 
 export default class Unit extends Prefab {
     constructor (game, name, position, properties) {
-        //super();
         super (game, name, position, properties);
 
-        this.stats = {
-            walking_radius: 5,
-            attack_range: 1,
-            speed: 1,
-            attack: 5,
-            defense: 1,
-            health: 10
-        };
+        this.unit_class = properties.unit_class;
+    }
 
-        let style = {
+    load_stats (classes_data) {
+        this.stats = Object.create(classes_data[this.unit_class]);
+
+        //Set healthbar as text
+        const style = {
             font: "bold 10px Arial",
             fill: "#FFF",
             stroke: "#000",
             strokeThickness: 3
-            //backgroundColor: "#000"
-        }
+        };
 
-        //Set healthbar as text
         this.healthbar = this.game_state.game.add.text(this.x - 5, this.y - 5, this.stats.health, style);
         this.healthbar.anchor.setTo(0.5);
     }
@@ -41,10 +36,12 @@ export default class Unit extends Prefab {
 
         moving_tween = this.game_state.game.tweens.create(this);
         healthbar_moving_tween = this.game_state.game.tweens.create(this.healthbar);
+
+        //Utilize tweens to move position, takes in a path found by the pathfinder
         path.forEach(function (position) {
             moving_tween.to({x: position.x, y: position.y}, Phaser.Timer.SECOND * 0.3);
             healthbar_moving_tween.to({x: position.x - 5, y: position.y - 5}, Phaser.Timer.SECOND * 0.3);
-        }, this)
+        }, this);
 
         moving_tween.start();
         healthbar_moving_tween.start();

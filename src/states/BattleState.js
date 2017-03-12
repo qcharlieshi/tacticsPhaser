@@ -13,11 +13,20 @@ import PriorityQueue from '../PriorityQueue'
 import createPrefabFromPool from '../utils'
 
 export default class BattleState extends TiledState {
-    constructor(game) {
+    constructor (game) {
         super(game);
     }
 
-    create() {
+    preload () {
+        this.load.text("class_data", "assets/class_data.json");
+    }
+
+    init (level_data, extra_parameters) {
+        TiledState.prototype.init.call(this, level_data);
+        this.units = extra_parameters.units;
+    }
+
+    create () {
         super.create.call(this);
         let world_grid;
 
@@ -36,17 +45,23 @@ export default class BattleState extends TiledState {
         world_grid = this.create_world_grid();
         this.pathfinding = this.game.plugins.add(Pathfinding, world_grid, [-1], this.tile_dimensions);
 
+        //Use classes data to generate units
+        this.class_data = JSON.parse(this.game.cache.getText("class_data"));
+
+        //Create priority que for units to determine turn order
+        //todo: switch to player order
         this.units_queue = new PriorityQueue({comparator: function (unit_a, unit_b) {
             return unit_a.act_turn - unit_b.act_turn;
         }});
 
-        this.groups.units.forEach(function (unit) {
-            this.units_queue.queue(unit);
-        }, this);
+        //Add each unit to the queue
+        this.units.forEach(function (unit_data) {
+            let unit_prefab = this.create_prefab(unit_data.name, unit_data, unit_data.position);
+            unit_prefab.load_stats(this.class_data);
+            this.units_queue.queue(unit_prefab);
+        }, this)
 
-        console.log(this.units_queue);
-
-        this.current_unit = this.prefabs.unit0; //todo: remove
+        this.next_turn();
     }
 
     next_turn () {

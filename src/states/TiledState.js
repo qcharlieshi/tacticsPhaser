@@ -5,6 +5,8 @@ import Phaser from 'phaser'
 import Unit from '../prefabs/Unit'
 import CommandItem from '../prefabs/CommandItem'
 import Menu from '../prefabs/Menu'
+import Prefab from '../prefabs/Prefab'
+import PlaceRegion from '../prefabs/PlaceRegion'
 
 export default class TiledState extends Phaser.State {
     constructor (game) {
@@ -13,7 +15,9 @@ export default class TiledState extends Phaser.State {
         this.prefab_classes = {
             "unit": Unit.prototype.constructor,
             "command_item": CommandItem.prototype.constructor,
-            "menu": Menu.prototype.constructor
+            "menu": Menu.prototype.constructor,
+            "place_region": PlaceRegion.prototype.constructor,
+            "unit_sprite": Prefab.prototype.constructor
         };
     }
 
@@ -43,12 +47,15 @@ export default class TiledState extends Phaser.State {
         let group_name, object_layer, collision_tiles, world_grid, tile_dimensions, prefab_name;
 
         this.layers = {};
+
+        //Find and create all map layer
         this.map.layers.forEach(function (layer) {
             this.layers[layer.name] = this.map.createLayer(layer.name);
             if (layer.properties.collision) {
                 this.map.setCollisionByExclusion([-1], true, layer.name);
             }
         }, this);
+
         this.layers[this.map.layer.name].resizeWorld();
 
         this.groups = {};
@@ -62,6 +69,7 @@ export default class TiledState extends Phaser.State {
                 this.map.objects[object_layer].forEach(this.create_object, this);
             }
         }
+
         for (prefab_name in this.level_data.prefabs) {
             if (this.level_data.prefabs.hasOwnProperty(prefab_name)) {
                 this.create_prefab(prefab_name, this.level_data.prefabs[prefab_name], this.level_data.prefabs[prefab_name].position);

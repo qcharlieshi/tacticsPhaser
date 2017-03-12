@@ -1,19 +1,12 @@
 {
     "assets": {
-        //Tilemaps
-        "battle_tileset": {"type": "image", "source": "assets/images/open_tileset.png"},
-        "aw": {"type": "image", "source": "assets/images/aw-mapsprites.jpg"},
+        "aw": {"type": "image", "source": "assets/images/aw-mapsprites.png"},
 
-        //Units Old
-        "knight_image": {"type": "image", "source": "assets/images/knight.png"},
-        "princess_image": {"type": "image", "source": "assets/images/princess.png"},
-        "mage_image": {"type": "image", "source": "assets/images/mage.png"},
-        "archer_image": {"type": "image", "source": "assets/images/archer.png"},
-
-        //Units New
         "infantry_image": {"type": "image", "source": "assets/images/infantry.png"},
-        "infantry_image": {"type": "image", "source": "assets/images/infantry.png"},
-
+        "rocket_infantry_image": {"type": "image", "source": "assets/images/rocket_infantry.png"},
+        "tank_image": {"type": "image", "source": "assets/images/tank.png"},
+        "rocket_image": {"type": "image", "source": "assets/images/rocket.png"},
+        "apc_image": {"type": "image", "source": "assets/images/apc.png"},
 
         "rectangle_image": {"type": "image", "source": "assets/images/rectangle.png"},
         "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},
@@ -29,7 +22,7 @@
     ],
     "map": {
         "key": "level_tilemap",
-        "tilesets": ["battle_tileset", "aw"]
+        "tilesets": ["aw"]
     },
     "prefabs": {
         "menu": {

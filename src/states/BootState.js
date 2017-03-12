@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
 
+//Bootstate loads up the next level json before moving to load for that level
+
 export default class BootState extends Phaser.State {
   init (level_file, next_state, extra_parameters) {
       this.level_file = level_file;

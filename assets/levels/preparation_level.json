@@ -1,0 +1,27 @@
+{
+  "assets": {
+    "aw": {"type": "image", "source": "assets/images/aw-mapsprites.png"},
+
+    "infantry_image": {"type": "image", "source": "assets/images/infantry.png"},
+    "rocket_infantry_image": {"type": "image", "source": "assets/images/rocket_infantry.png"},
+    "tank_image": {"type": "image", "source": "assets/images/tank.png"},
+    "rocket_image": {"type": "image", "source": "assets/images/rocket.png"},
+    "apc_image": {"type": "image", "source": "assets/images/apc.png"},
+
+    "rectangle_image": {"type": "image", "source": "assets/images/rectangle.png"},
+    "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},
+
+    "level_tilemap": {"type": "tilemap", "source": "assets/maps/preparation_map.json"}
+  },
+  "groups": [
+    "place_regions",
+    "unit_sprites"
+  ],
+  "map": {
+    "key": "level_tilemap",
+    "tilesets": ["aw"]
+  },
+  "prefabs": {
+
+  }
+}

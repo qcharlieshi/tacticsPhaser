@@ -1,12 +1,14 @@
 import 'pixi'
 import 'p2'
 
+
 import Phaser from 'phaser'
 import config from './config'
 
 import BootState from './states/BootState'
 import LoadingState from './states/LoadingState'
 import BattleState from './states/BattleState'
+import PreparationState from './states/PreparationState'
 
 
 class Tactics extends Phaser.Game {
@@ -17,11 +19,14 @@ class Tactics extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null)
 
+    let firebase = new Firebase("https://tactics-23582.firebaseio.com/");
+
     this.state.add("BootState", new BootState());
     this.state.add("LoadingState", new LoadingState());
     this.state.add("BattleState", new BattleState());
+    this.state.add("PreparationState", new PreparationState());
 
-    this.state.start("BootState", true, false, "assets/levels/battle_level.json", "BattleState");
+    this.state.start("BootState", true, false, "assets/levels/preparation_level.json", "PreparationState");
   }
 
 }

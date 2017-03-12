@@ -1,0 +1,42 @@
+{
+  "infantry": {
+    "health": 10,
+    "attack": 2,
+    "defense": 2,
+    "walking_radius": 3,
+    "attack_range": 1,
+    "price": 1000
+  },
+  "rocket_infantry": {
+    "health": 10,
+    "attack": 5,
+    "defense": 3,
+    "walking_radius": 3,
+    "attack_range": 1,
+    "price": 3000
+  },
+  "apc": {
+    "health": 10,
+    "attack": 5,
+    "defense": 4,
+    "walking_radius": 6,
+    "attack_range": 1,
+    "price": 4000
+  },
+  "tank": {
+    "health": 10,
+    "attack": 8,
+    "defense": 6,
+    "walking_radius": 4,
+    "attack_range": 1,
+    "price": 5000
+  },
+  "rocket": {
+    "health": 10,
+    "attack": 10,
+    "defense": 4,
+    "walking_radius": 2,
+    "attack_range": 4,
+    "price": 7000
+  }
+}
