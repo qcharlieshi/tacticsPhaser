@@ -27,12 +27,11 @@ export default class Unit extends Prefab {
     }
 
     move_to (position) {
-        console.log('this is', this)
         this.game_state.pathfinding.find_path(this.position, position, this.follow_path, this);
     }
 
     follow_path (path) {
-        let next_position, moving_tween, healthbar_moving_tween;
+        let moving_tween, healthbar_moving_tween;
 
         moving_tween = this.game_state.game.tweens.create(this);
         healthbar_moving_tween = this.game_state.game.tweens.create(this.healthbar);

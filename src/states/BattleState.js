@@ -29,7 +29,7 @@ export default class BattleState extends TiledState {
         this.battle_ref = firebase.database().ref("child/battles").child(extra_parameters.battle_id);
         this.local_player = extra_parameters.local_player;
         this.remote_player = extra_parameters.remote_player;
-        
+
         //this.units = extra_parameters.units;
     }
 
@@ -77,25 +77,32 @@ export default class BattleState extends TiledState {
         //Check if units are alive or game over
         //If not game over, set current_player to the opposite
 
-        console.log('IN NEXT PLAYER TURN!!!!!!!!!!!')
+        console.log('BEFORE SWITCH IN NEXT PLAYER TURN!!!!!!!!!!!', this.current_player);
+        console.log('BEFORE SWITCH IN NEXT PLAYER TURN!!!!!!!!!!!', this.current_turn);
 
         if (this.groups.player1_units.countLiving() === 0 || this.groups.player2_units.countLiving() === 0) {
             this.game_over();
         } else {
-            //this.clear_previous_turn();
+            this.clear_previous_turn();
             this.current_turn++;
 
             if (this.current_player === 'player1') {
                 this.current_player = 'player2';
 
-                //add units back to its queue
-                //untint player2's units
+                //Add units back to its queue
+                //Untint player2's units
                 this.groups.player2_units.forEach(function (unit) {
                     unit.tint = 0xffffff;
                 });
 
-                this.battle_ref.once("value", this.create_units_queue.bind(this));
-                //this.create_units_queue();
+                console.log('queing player 2 units')
+                if (this.current_turn !== 1) {
+                    this.groups.player2_units.forEach(unit => {
+                        this.units_queue_p2.queue({player: 'player2', prefab: unit});
+                    })
+                }
+
+                this.next_turn();
             } else {
                 this.current_player = 'player1';
 
@@ -103,8 +110,11 @@ export default class BattleState extends TiledState {
                     unit.tint = 0xffffff;
                 });
 
-                this.battle_ref.once("value", this.create_units_queue.bind(this));
-                //this.create_units_queue();
+                this.groups.player1_units.forEach(unit => {
+                    this.units_queue_p1.queue({player: 'player1', prefab: unit});
+                })
+
+                this.next_turn();
             }
         }
     }
@@ -122,15 +132,16 @@ export default class BattleState extends TiledState {
                 this.current_unit = this.units_queue_p1.dequeue();
                 this.next_turn_check();
             }
-            else
+            else {
+                console.log("in next turn")
                 this.next_player_turn();
+            }
         } else {
             if (this.units_queue_p2.length > 0) {
 
                 this.current_unit = this.units_queue_p2.dequeue();
 
-                console.log("inside current unit", this.units_queue_p2);
-                this.next_turn_check();
+                //this.next_turn_check();
             }
             else
                 this.next_player_turn();
@@ -257,6 +268,8 @@ export default class BattleState extends TiledState {
     }
 
     move () {
+        console.log('current unit is...', this.current_unit)
+
         this.highlight_region(this.current_unit.prefab.position,
                               this.current_unit.prefab.stats.walking_radius,
                               "move_regions",

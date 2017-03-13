@@ -18,7 +18,7 @@ export default class PreparationState extends TiledState {
 
         //Each level could have its own set of starting units
         this.units_to_place =
-            [//{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: "infantry_image", group: this.local_player + "_units", unit_class: "infantry"}},
+            [{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: "infantry_image", group: this.local_player + "_units", unit_class: "infantry"}},
             //{type: "unit", name: this.local_player + "_rocket_infantry_unit", properties: {texture: "rocket_infantry_image", group: this.local_player + "_units", unit_class: "rocket_infantry"}},
             //{type: "unit", name: this.local_player + "_tank_unit", properties: {texture: "tank_image", group: this.local_player + "_units", unit_class: "tank"}},
             //{type: "unit", name: this.local_player + "_apc_unit", properties: {texture: "apc_image", group: this.local_player + "_units", unit_class: "apc"}},
