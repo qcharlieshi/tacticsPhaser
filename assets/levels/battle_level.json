@@ -8,6 +8,9 @@
         "rocket_image": {"type": "image", "source": "assets/images/rocket.png"},
         "apc_image": {"type": "image", "source": "assets/images/apc.png"},
 
+        "infantry_blue_image": {"type": "image", "source": "assets/images/infantry_blue.png"},
+        "rocket_blue_image": {"type": "image", "source": "assets/images/rocket_blue.png"},
+
         "rectangle_image": {"type": "image", "source": "assets/images/rectangle.png"},
         "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},
         

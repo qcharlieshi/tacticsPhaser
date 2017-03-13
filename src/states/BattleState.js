@@ -9,7 +9,6 @@ import Pathfinding from '../plugins/Pathfinding'
 import AttackRegion from '../prefabs/AttackRegion'
 import PriorityQueue from '../PriorityQueue'
 
-//import HighlightedRegion from '../prefabs/HighlightedRegion'
 import createPrefabFromPool from '../utils'
 import firebase from 'firebase'
 
@@ -49,7 +48,6 @@ export default class BattleState extends TiledState {
             this.prefabs.menu.add_item(menu_item);
         }, this);
 
-
         //Create tile dimension of points then add plugin into the game with the BFS object and the
         //map object it'll operate on
         //Gives us access to BFS operations through this.bfs......
@@ -69,7 +67,11 @@ export default class BattleState extends TiledState {
         //Set current player
         this.current_player = "player1";
         this.current_turn = 1;
-        this.turnended = false;
+
+        //Switch menu on for correct player by switching it off for the other guy
+        if (this.local_player !== this.current_player) {
+            this.prefabs.menu.show(false);
+        }
 
 
         this.battle_ref.onDisconnect().remove();
@@ -86,6 +88,11 @@ export default class BattleState extends TiledState {
         console.log('BEFORE SWITCH IN NEXT PLAYER TURN!!!!!!!!!!!', this.current_player);
         console.log('BEFORE SWITCH IN NEXT PLAYER TURN!!!!!!!!!!!', this.current_turn);
 
+        //Switch menu off for current player
+        if (this.local_player === this.current_player) {
+            this.prefabs.menu.show(false);
+        }
+
         if (this.groups.player1_units.countLiving() === 0 || this.groups.player2_units.countLiving() === 0) {
             this.game_over();
         } else {
@@ -94,6 +101,11 @@ export default class BattleState extends TiledState {
 
             if (this.current_player === 'player1') {
                 this.current_player = 'player2';
+
+                //Show menu
+                if (this.local_player === this.current_player) {
+                    this.prefabs.menu.show(true);
+                }
 
                 //Add units back to its queue
                 //Untint player2's unitsi345
@@ -111,6 +123,11 @@ export default class BattleState extends TiledState {
                 this.next_turn();
             } else {
                 this.current_player = 'player1';
+
+                //Show menu
+                if (this.local_player === this.current_player) {
+                    this.prefabs.menu.show(true);
+                }
 
                 this.groups.player1_units.forEach(function (unit) {
                     unit.tint = 0xffffff;
@@ -161,6 +178,7 @@ export default class BattleState extends TiledState {
         if (this.current_unit.alive) {
 
             //this.current_unit.prefab.tint = (this.current_unit.prefab.name.search("player1") !== -1) ? 0x0000ff : 0xff0000;
+
             console.log("inside next turn check");
             if (this.current_unit.player === this.local_player) {
                 this.prefabs.menu.show(true);

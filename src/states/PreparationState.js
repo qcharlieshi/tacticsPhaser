@@ -16,13 +16,19 @@ export default class PreparationState extends TiledState {
         this.local_player = extra_parameters.local_player;
         this.remote_player = extra_parameters.remote_player;
 
+        let textureInfantryBlue = "infantry_blue_image"
+        let textureRocketBlue = "rocket_blue_image"
+
+        let textureInfantry = "infantry_image"
+        let textureRocket = "rocket_image"
+
         //Each level could have its own set of starting units
         this.units_to_place =
-            [{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: "infantry_image", group: this.local_player + "_units", unit_class: "infantry"}},
+            [{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: (this.local_player === 'player2' ? textureInfantryBlue : textureInfantry), group: this.local_player + "_units", unit_class: "infantry"}},
             //{type: "unit", name: this.local_player + "_rocket_infantry_unit", properties: {texture: "rocket_infantry_image", group: this.local_player + "_units", unit_class: "rocket_infantry"}},
             //{type: "unit", name: this.local_player + "_tank_unit", properties: {texture: "tank_image", group: this.local_player + "_units", unit_class: "tank"}},
             //{type: "unit", name: this.local_player + "_apc_unit", properties: {texture: "apc_image", group: this.local_player + "_units", unit_class: "apc"}},
-            {type: "unit", name: this.local_player + "_rocket_unit", properties: {texture: "rocket_image", group: this.local_player + "_units", unit_class: "rocket"}}];
+            {type: "unit", name: this.local_player + "_rocket_unit", properties: {texture: (this.local_player === 'player2' ? textureRocketBlue : textureRocket), group: this.local_player + "_units", unit_class: "rocket"}}];
 
         this.units = [];
     }
