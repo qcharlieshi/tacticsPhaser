@@ -4,11 +4,24 @@
 
 import Prefab from './Prefab'
 
+//TODO: adding sprite animations
+const spriteDataTemp = {"frames": [{"name":"sprite1","x":0,"y":0,"width":16,"height":16},{"name":"sprite2","x":16,"y":0,"width":16,"height":16},{"name":"sprite3","x":32,"y":0,"width":16,"height":16},{"name":"sprite4","x":64,"y":0,"width":16,"height":16},{"name":"sprite5","x":80,"y":0,"width":16,"height":16},{"name":"sprite6","x":96,"y":0,"width":16,"height":16},{"name":"sprite7","x":112,"y":0,"width":16,"height":16}]}
+
 export default class Unit extends Prefab {
     constructor (game, name, position, properties) {
         super (game, name, position, properties);
 
         this.unit_class = properties.unit_class;
+
+        //console.log('inside unit', this);
+        //
+        // if(this.unit_class === 'infantry') {
+        //     this.game.load.atlas('infantry', 'assets/sprites/infantrySprite.png', null, spriteDataTemp)
+        //     this.animations.add('idle');
+        //     this.animations.play('idle', 5, true);
+        // }
+
+
     }
 
     load_stats (classes_data) {
@@ -46,22 +59,20 @@ export default class Unit extends Prefab {
         healthbar_moving_tween.start();
     }
 
-    attack_unit (target_unit) {
-        //Basic game logic, not completed implemented
+    calculate_damage (target_unit) {
         let random_attack, random_defense, damage;
 
-        random_attack = this.game_state.rnd.between(this.stats.attack - 2, this.stats.attack);
-        random_defense = this.game_state.rnd.between(this.stats.defense - 1, this.stats.defense);
+        random_attack = this.game_state.game.rnd.between(this.stats.attack - 2, this.stats.attack);
+        random_defense = this.game_state.game.rnd.between(this.stats.defense - 1, target_unit.stats.defense);
+
         damage = Math.max(random_attack - random_defense, 0);
-        target_unit.receive_damage(damage);
+        return damage;
     }
 
     receive_damage (damage) {
         //Change stats and display
         this.stats.health -= damage;
         this.healthbar.text = this.stats.health;
-
-        console.log('recieved damage, health is: ', this.healthbar.text);
 
         //Check if dead
         if (this.stats.health <= 0) {

@@ -13,6 +13,8 @@ import PriorityQueue from '../PriorityQueue'
 import createPrefabFromPool from '../utils'
 import firebase from 'firebase'
 
+
+
 export default class BattleState extends TiledState {
     constructor (game) {
         super(game);
@@ -30,7 +32,11 @@ export default class BattleState extends TiledState {
         this.local_player = extra_parameters.local_player;
         this.remote_player = extra_parameters.remote_player;
 
-        //this.units = extra_parameters.units;
+        //Create Sprite Atlas
+
+
+
+
     }
 
     create () {
@@ -90,13 +96,13 @@ export default class BattleState extends TiledState {
                 this.current_player = 'player2';
 
                 //Add units back to its queue
-                //Untint player2's units
+                //Untint player2's unitsi345
                 this.groups.player2_units.forEach(function (unit) {
                     unit.tint = 0xffffff;
                 });
 
                 console.log('queing player 2 units')
-                if (this.current_turn !== 1) {
+                if (this.current_turn !== 2) {
                     this.groups.player2_units.forEach(unit => {
                         this.units_queue_p2.queue({player: 'player2', prefab: unit});
                     })
@@ -127,21 +133,23 @@ export default class BattleState extends TiledState {
         console.log('length of p2', this.units_queue_p2.length);
         console.log('CURRENT PLAYER', this.current_player);
 
+        if (this.current_unit) {
+            this.current_unit.prefab.tint = 0x0000ff;
+        }
+
         if (this.current_player === "player1") {
             if (this.units_queue_p1.length > 0) {
                 this.current_unit = this.units_queue_p1.dequeue();
                 this.next_turn_check();
             }
             else {
-                console.log("in next turn")
                 this.next_player_turn();
             }
         } else {
             if (this.units_queue_p2.length > 0) {
-
                 this.current_unit = this.units_queue_p2.dequeue();
 
-                //this.next_turn_check();
+                this.next_turn_check();
             }
             else
                 this.next_player_turn();
@@ -151,7 +159,8 @@ export default class BattleState extends TiledState {
     next_turn_check () {
         //Only show if its alive, otherwise skip
         if (this.current_unit.alive) {
-            this.current_unit.prefab.tint = (this.current_unit.prefab.name.search("player1") !== -1) ? 0x0000ff : 0xff0000;
+
+            //this.current_unit.prefab.tint = (this.current_unit.prefab.name.search("player1") !== -1) ? 0x0000ff : 0xff0000;
             console.log("inside next turn check");
             if (this.current_unit.player === this.local_player) {
                 this.prefabs.menu.show(true);
@@ -260,8 +269,10 @@ export default class BattleState extends TiledState {
                     this.move_unit(command.target);
                     break;
                 case "attack":
+                    this.attack_unit(command.target, command.damage)
                     break;
                 case "wait":
+                    this.wait()
                     break;
             }
         }
@@ -285,28 +296,44 @@ export default class BattleState extends TiledState {
         this.next_turn();
     }
 
+    send_attack_command (target_unit) {
+        let damage;
+        damage = this.current_unit.prefab.calculate_damage(target_unit);
+        this.battle_ref.child("command").set({type: "attack", target: target_unit.name, damage: damage})
+    }
+
+    attack_unit (target_name, damage) {
+        this.prefabs[target_name].receive_damage(damage);
+        this.next_turn();
+    }
+
     attack () {
-        this.highlight_region(this.current_unit.position,
-                              this.current_unit.stats.attack_range,
+        console.log("sending attacking")
+        this.highlight_region(this.current_unit.prefab.position,
+                              this.current_unit.prefab.stats.attack_range,
                               "attack_regions",
                               AttackRegion.prototype.constructor)
+    }
+
+    send_wait_command () {
+        this.battle_ref.child("command").set({type: "wait", unit: this.current_unit.prefab.name});
     }
 
     wait () {
         this.next_turn();
     }
 
-    // game_over () {
-    //     let winner, winner_message;
-    //     winner = (this.groups.player1_units.countLiving() === 0) ? "player 2" : "player 1";
-    //
-    //     winner_message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, winner + " wins", {font: "24px Arial", fill: "#FFF"});
-    //     winner_message.anchor.setTo(0.5);
-    //
-    //     this.game.input.onDown.add(function () {
-    //         this.game.state.start("BootState", true, false, "assets/levels/title_screen.json", "TitleState");
-    //     }, this);
-    // }
+    game_over () {
+        let winner, winner_message;
+        winner = (this.groups.player1_units.countLiving() === 0) ? "player 2" : "player 1";
+
+        winner_message = this.game.add.text(this.game.world.centerX, this.game.world.centerY, winner + " wins", {font: "24px Arial", fill: "#FFF"});
+        winner_message.anchor.setTo(0.5);
+
+        this.game.input.onDown.add(function () {
+            this.game.state.start("BootState", true, false, "assets/levels/title_screen.json", "TitleState");
+        }, this);
+    }
 }
 
 

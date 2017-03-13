@@ -11,7 +11,7 @@
         "rectangle_image": {"type": "image", "source": "assets/images/rectangle.png"},
         "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},
         
-        "level_tilemap": {"type": "tilemap", "source": "assets/maps/battle_mapv2.json"}
+        "level_tilemap": {"type": "tilemap", "source": "assets/maps/battle_mapv3.json"}
     },
     "groups": [
         "move_regions",
@@ -61,7 +61,7 @@
                 "text": "Wait",
                 "style": {"font": "10px Arial", "fill": "#000"},
                 "group": "menu_items",
-                "callback": "wait"
+                "callback": "send_wait_command"
             }
         }
     }
