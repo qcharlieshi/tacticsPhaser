@@ -29,9 +29,7 @@ export default class BattleState extends TiledState {
         this.battle_ref = firebase.database().ref("child/battles").child(extra_parameters.battle_id);
         this.local_player = extra_parameters.local_player;
         this.remote_player = extra_parameters.remote_player;
-
-
-
+        
         //this.units = extra_parameters.units;
     }
 
@@ -65,6 +63,7 @@ export default class BattleState extends TiledState {
         //Set current player
         this.current_player = "player1";
         this.current_turn = 1;
+        this.turnended = false;
 
 
         this.battle_ref.onDisconnect().remove();
@@ -77,10 +76,13 @@ export default class BattleState extends TiledState {
     next_player_turn () {
         //Check if units are alive or game over
         //If not game over, set current_player to the opposite
+
+        console.log('IN NEXT PLAYER TURN!!!!!!!!!!!')
+
         if (this.groups.player1_units.countLiving() === 0 || this.groups.player2_units.countLiving() === 0) {
             this.game_over();
         } else {
-            this.clear_previous_turn();
+            //this.clear_previous_turn();
             this.current_turn++;
 
             if (this.current_player === 'player1') {
@@ -101,7 +103,8 @@ export default class BattleState extends TiledState {
                     unit.tint = 0xffffff;
                 });
 
-                this.create_units_queue();
+                this.battle_ref.once("value", this.create_units_queue.bind(this));
+                //this.create_units_queue();
             }
         }
     }
@@ -111,34 +114,44 @@ export default class BattleState extends TiledState {
         //Set current unit to the one dequeed based on the current player passed
         //If player has no more units to deque, change to next player's turn
         console.log('length of p1', this.units_queue_p1.length);
+        console.log('length of p2', this.units_queue_p2.length);
+        console.log('CURRENT PLAYER', this.current_player);
 
         if (this.current_player === "player1") {
-            if (this.units_queue_p1.length > 0)
+            if (this.units_queue_p1.length > 0) {
                 this.current_unit = this.units_queue_p1.dequeue();
+                this.next_turn_check();
+            }
             else
                 this.next_player_turn();
         } else {
-            if (this.units_queue_p2.length > 0)
+            if (this.units_queue_p2.length > 0) {
+
                 this.current_unit = this.units_queue_p2.dequeue();
+
+                console.log("inside current unit", this.units_queue_p2);
+                this.next_turn_check();
+            }
             else
                 this.next_player_turn();
         }
+    }
 
+    next_turn_check () {
         //Only show if its alive, otherwise skip
         if (this.current_unit.alive) {
             this.current_unit.prefab.tint = (this.current_unit.prefab.name.search("player1") !== -1) ? 0x0000ff : 0xff0000;
-
+            console.log("inside next turn check");
             if (this.current_unit.player === this.local_player) {
                 this.prefabs.menu.show(true);
             }
         } else {
-            this.next_turn();
+            //this.next_turn();
         }
     }
 
     clear_previous_turn () {
         //Clears any highlighted regions
-
         this.groups.move_regions.forEach(function (region) {
             region.kill();
         }, this);
@@ -244,8 +257,8 @@ export default class BattleState extends TiledState {
     }
 
     move () {
-        this.highlight_region(this.current_unit.position,
-                              this.current_unit.stats.walking_radius,
+        this.highlight_region(this.current_unit.prefab.position,
+                              this.current_unit.prefab.stats.walking_radius,
                               "move_regions",
                               MoveRegion.prototype.constructor)
     }
