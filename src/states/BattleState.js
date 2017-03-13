@@ -32,10 +32,6 @@ export default class BattleState extends TiledState {
         this.remote_player = extra_parameters.remote_player;
 
         //Create Sprite Atlas
-
-
-
-
     }
 
     create () {
@@ -173,6 +169,7 @@ export default class BattleState extends TiledState {
         }
     }
 
+    //todo: this function is increasingly useless
     next_turn_check () {
         //Only show if its alive, otherwise skip
         if (this.current_unit.alive) {
@@ -187,6 +184,7 @@ export default class BattleState extends TiledState {
             //this.next_turn();
         }
     }
+
 
     clear_previous_turn () {
         //Clears any highlighted regions

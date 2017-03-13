@@ -20,8 +20,6 @@ export default class Unit extends Prefab {
         //     this.animations.add('idle');
         //     this.animations.play('idle', 5, true);
         // }
-
-
     }
 
     load_stats (classes_data) {

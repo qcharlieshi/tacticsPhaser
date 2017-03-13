@@ -15,11 +15,18 @@ export default class AttackRegion extends HighlightedRegion {
 
 
         target_unit = this.game_state.find_prefab_in_tile(this.game_state.remote_player + "_units", this.position);
-            if (target_unit) {
-                this.game_state.send_attack_command(target_unit);
+
+        if (target_unit) {
+            this.game_state.send_attack_command(target_unit);
+            this.game_state.next_turn();
+        } else {
+            this.game_state.groups.attack_regions.forEach(function (region) {
+                region.kill();
+            }, this.game_state);
+
         }
 
-        this.game_state.next_turn();
+
     }
 
 

@@ -10,6 +10,9 @@
 
         "infantry_blue_image": {"type": "image", "source": "assets/images/infantry_blue.png"},
         "rocket_blue_image": {"type": "image", "source": "assets/images/rocket_blue.png"},
+        "rocket_infantry_blue_image": {"type": "image", "source": "assets/images/rocket_infantry_blue.png"},
+        "tank_blue_image": {"type": "image", "source": "assets/images/tank_blue.png"},
+        "apc_blue_image": {"type": "image", "source": "assets/images/apc_blue.png"},
 
         "rectangle_image": {"type": "image", "source": "assets/images/rectangle.png"},
         "highlighted_region_image": {"type": "image", "source": "assets/images/highlighted_region.png"},

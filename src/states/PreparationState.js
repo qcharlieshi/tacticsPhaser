@@ -16,19 +16,24 @@ export default class PreparationState extends TiledState {
         this.local_player = extra_parameters.local_player;
         this.remote_player = extra_parameters.remote_player;
 
-        let textureInfantryBlue = "infantry_blue_image"
-        let textureRocketBlue = "rocket_blue_image"
 
-        let textureInfantry = "infantry_image"
-        let textureRocket = "rocket_image"
+        let textureInfantry = (this.local_player === 'player2' ? "infantry_blue_image" : "infantry_image")
+        let textureRocket = (this.local_player === 'player2' ? "rocket_blue_image" : "rocket_image")
+        let textureRocketInfantry = (this.local_player === 'player2' ? "rocket_infantry_blue_image" : "rocket_infantry_image")
+        let textureApc = (this.local_player === 'player2' ? "apc_blue_image" : "apc_image")
+        let textureTank = (this.local_player === 'player2' ? "tank_blue_image" : "tank_image")
+
+        console.log('infantry texture',textureInfantry)
+
+        // (this.local_player === 'player2' ? textureInfantryBlue : textureInfantry)
 
         //Each level could have its own set of starting units
         this.units_to_place =
-            [{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: (this.local_player === 'player2' ? textureInfantryBlue : textureInfantry), group: this.local_player + "_units", unit_class: "infantry"}},
-            //{type: "unit", name: this.local_player + "_rocket_infantry_unit", properties: {texture: "rocket_infantry_image", group: this.local_player + "_units", unit_class: "rocket_infantry"}},
-            //{type: "unit", name: this.local_player + "_tank_unit", properties: {texture: "tank_image", group: this.local_player + "_units", unit_class: "tank"}},
-            //{type: "unit", name: this.local_player + "_apc_unit", properties: {texture: "apc_image", group: this.local_player + "_units", unit_class: "apc"}},
-            {type: "unit", name: this.local_player + "_rocket_unit", properties: {texture: (this.local_player === 'player2' ? textureRocketBlue : textureRocket), group: this.local_player + "_units", unit_class: "rocket"}}];
+            [{type: "unit", name: this.local_player + "_infantry_unit", properties: {texture: textureInfantry, group: this.local_player + "_units", unit_class: "infantry"}},
+            {type: "unit", name: this.local_player + "_rocket_infantry_unit", properties: {texture: textureRocketInfantry, group: this.local_player + "_units", unit_class: "rocket_infantry"}},
+            {type: "unit", name: this.local_player + "_tank_unit", properties: {texture: textureTank, group: this.local_player + "_units", unit_class: "tank"}},
+            {type: "unit", name: this.local_player + "_apc_unit", properties: {texture: textureApc, group: this.local_player + "_units", unit_class: "apc"}},
+            {type: "unit", name: this.local_player + "_rocket_unit", properties: {texture: textureRocket, group: this.local_player + "_units", unit_class: "rocket"}}];
 
         this.units = [];
     }
